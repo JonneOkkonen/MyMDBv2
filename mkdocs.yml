@@ -1,0 +1,24 @@
+site_name: MyMovieDatabase Docs
+site_url: http://m2235.pages.labranet.jamk.fi/myMovieDatabaseDocs/
+
+site_author: Jonne Okkonen
+
+docs_dir: docs
+site_dir: public
+
+markdown_extensions:
+    - toc:
+        anchorlink: True
+        separator: "_"
+    - admonition
+    - tables
+    - sane_lists
+    - pymdownx.superfences:
+
+theme:
+    name: 'material'
+    palette:
+      primary: 'black'
+      accent: 'black'
+    logo:
+      icon: 'assignment'
