@@ -34,7 +34,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     </ul>
@@ -53,7 +53,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Movies') }}</a>
+                                <a class="nav-link" href="{{ route('movies') }}">{{ __('Movies') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">{{ __('TV-series') }}</a>
@@ -87,14 +87,14 @@
                             <div class="site-heading">
                                 @yield('heading')
                             </div>
+                            @yield('heading-content')
                         </div>
                     </div>
                 </div>
+                @yield('header-bottom')
         </header>
         <!-- Main Content -->
-        <main id="py-4">
-            @yield('content')
-        </main>
+        @yield('content')
         <!-- Footer -->
         <footer>
             <div class="container">

@@ -21,3 +21,6 @@ Auth::routes();
 
 // HomePage (after login)
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Movie Pages
+Route::get('/movies', 'MovieController@view')->name('movies');

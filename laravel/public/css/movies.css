@@ -1,0 +1,73 @@
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+}
+.progress {
+    font-size: 18px;
+    height: 25px;
+}
+.tabItem {
+    margin-left: 5px;
+    font-size: 18px;
+    color: black;
+    background-color: lightgray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    z-index: 9999;
+}
+.tabItem:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+.active {
+    color: black;
+    font-size: 18px;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.tabLink, .tabLink:hover, .tabLink:active, .tabLink:focus {
+    color: black;
+}
+.tab-content {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: auto;
+    max-width: 1600px;
+}
+.tab-content > .active {
+    display: contents;
+}
+.poster {
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 160px;
+}
+.movieName {
+    font-size: 18px;
+    margin-left: 2px;
+}
+.movieType {
+    font-size: 15px;
+    margin-left: 2px;
+}
+#gridItem {
+    margin-bottom: 25px;
+}
+.col {
+    margin-left: 15px;
+    margin-right: 15px;
+    max-width: 169px;
+}
+.poster-img-top {
+    margin-top: -1px;
+    margin-left: -1px;
+    margin-bottom: 5px;
+    width: 160px;
+    height: 240px;
+    border: 2px;
+    border-color: white;
+    border-style: solid;
+}
+.poster-img-top:hover {
+    border-color: lightblue;
+}
