@@ -187,6 +187,10 @@ img::-moz-selection {
     }
 }
 
+.dropdown-toggle:active, .open .dropdown-menu {
+    display: block;
+}
+
 header.masthead {
     margin-bottom: 50px;
     background: no-repeat center center;
