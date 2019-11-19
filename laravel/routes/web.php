@@ -11,10 +11,13 @@
 |
 */
 
+// FrontPage (without login)
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Auth Routes
 Auth::routes();
 
+// HomePage (after login)
 Route::get('/home', 'HomeController@index')->name('home');
