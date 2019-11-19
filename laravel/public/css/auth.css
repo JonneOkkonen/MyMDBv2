@@ -1,0 +1,25 @@
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+}
+
+.btn-primary {
+    width: 75%;
+    border-radius: 5px;
+    background-color: #E1AD01;
+    border-color: rgb(221, 181, 36);
+}
+
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover {
+    color: #fff;
+    background-color: rgb(172, 134, 9) !important;
+    border-color: rgb(221, 181, 36) !important;
+}
+
+.btn-link {
+    color: #E1AD01;
+}
+.btn-link:hover {
+    color: rgb(216, 168, 9) !important;
+}
