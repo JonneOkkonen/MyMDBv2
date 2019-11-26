@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('movies', 'ApiController@all');
-Route::get('movies/{id}', 'ApiController@single');
+Route::get('movie/{id}', 'ApiController@single');
 Route::get('movies/count', 'ApiController@count');
+Route::get('movies/add', 'ApiController@add');

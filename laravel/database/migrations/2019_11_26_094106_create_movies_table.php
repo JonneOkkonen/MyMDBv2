@@ -17,19 +17,19 @@ class CreateMoviesTable extends Migration
             $table->bigIncrements('movieID');
             $table->unsignedBigInteger('userID');
             $table->string('name');
-            $table->string('type');
-            $table->string('runtime');
-            $table->string('year');
-            $table->string('genre');
-            $table->string('rated');
-            $table->string('released');
-            $table->string('actors');
-            $table->string('director');
-            $table->string('writer');
-            $table->string('rating');
-            $table->string('rottenTomatoes');
-            $table->string('plot');
-            $table->string('posterURL');
+            $table->string('type')->nullable();
+            $table->string('runtime')->nullable();
+            $table->string('year')->nullable();
+            $table->string('genre')->nullable();
+            $table->string('rated')->nullable();
+            $table->string('released')->nullable();
+            $table->string('actors')->nullable();
+            $table->string('director')->nullable();
+            $table->string('writer')->nullable();
+            $table->string('rating')->nullable();
+            $table->string('rottenTomatoes')->nullable();
+            $table->string('plot')->nullable();
+            $table->string('posterURL')->nullable();
             $table->timestamps();
             
             // Add Foreign Keys
