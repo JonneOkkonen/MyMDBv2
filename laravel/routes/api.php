@@ -13,13 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('movies', 'ApiController@all');
 Route::get('movie/{id}', 'ApiController@single');
 Route::get('movies/update/{id}', 'ApiController@update');
 Route::get('movies/delete/{id}', 'ApiController@delete');
 Route::get('movies/count', 'ApiController@count');
 Route::get('movies/add', 'ApiController@add');
+
+Route::get('test', 'ApiController@test');
