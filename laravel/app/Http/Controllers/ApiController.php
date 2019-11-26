@@ -6,19 +6,40 @@ use Illuminate\Http\Request;
 use App\Movie;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Crypt;
 
 class ApiController extends Controller
 {
+    private static $sessionAuth = false;
+
     public function __construct()
     {
-        $this->middleware('auth:api');
+        if(request('session_token') == NULL) {
+            self::$sessionAuth = false;
+            $this->middleware('auth:api');
+        }else {
+            self::$sessionAuth = true;
+        }
     }
 
     // List all movies from user
     // Add Pagination in future
     public function all()
     {
-        $userID = Auth::guard('api')->user()->id;
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
         $movies = Movie::all()->where('userID', $userID);
         if($movies == "[]") {
             return response()->json([
@@ -32,7 +53,20 @@ class ApiController extends Controller
     // List single movie
     public function single($id)
     {
-        $userID = Auth::guard('api')->user()->id;
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
         $movies = Movie::all()->where('userID', $userID)->where('movieID', $id);
         if($movies == "[]") {
             return response()->json([
@@ -46,7 +80,20 @@ class ApiController extends Controller
     // Delete single movie
     public function delete($id)
     {
-        $userID = Auth::guard('api')->user()->id;
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
         $movie = Movie::find($id);
         if($movie == NULL || $movie->userID != $userID) {
             return response()->json([
@@ -64,7 +111,20 @@ class ApiController extends Controller
     // Add Movie to database
     public function add()
     {
-        $userID = Auth::guard('api')->user()->id;
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
         if(request('name') != NULL) {
             $movie = new Movie();
             $movie->userID = $userID;
@@ -101,7 +161,20 @@ class ApiController extends Controller
     // Update movie data
     public function update($id)
     {
-        $userID = Auth::guard('api')->user()->id;
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
         if(request('name') != NULL) {
             $movie = Movie::find($id);
             if($movie == NULL || $movie->userID != $userID) {
@@ -144,7 +217,20 @@ class ApiController extends Controller
     // Return movie type count
     public function count()
     {
-        $userID = Auth::guard('api')->user()->id;
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
         $movies = DB::table('movies')
                             ->selectRaw("IFNULL(type, 'All') as type, count(*) as count")
                             ->where('userID', $userID)
