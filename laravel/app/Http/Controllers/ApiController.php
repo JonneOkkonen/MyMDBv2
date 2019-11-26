@@ -16,7 +16,13 @@ class ApiController extends Controller
         if($response == "APIKeyCorrect") {
             $userID = DB::table('users')->where('api_token', request('key'))->value('id');
             $movies = Movie::all()->where('userID', $userID);
-            return response()->json($movies, 200);
+            if($movies == "[]") {
+                return response()->json([
+                    'msg' => '0 movies found'
+                ], 400);
+            }else {
+                return response()->json($movies, 200);
+            }
         }else {
             return $response;
         }
