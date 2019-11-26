@@ -23,7 +23,6 @@ class ApiController extends Controller
     }
 
     // List single movie
-    // Checks userID. Doesn't show other users movies
     public function single($id)
     {
         $response = self::CheckAPIKey(request('key'));
@@ -36,6 +35,29 @@ class ApiController extends Controller
                 ], 400);
             }else {
                 return response()->json($movies, 200);
+            }
+        }else {
+            return $response;
+        }
+    }
+
+    // Delete single movie
+    public function delete($id)
+    {
+        $response = self::CheckAPIKey(request('key'));
+        if($response == "APIKeyCorrect") {
+            $userID = DB::table('users')->where('api_token', request('key'))->value('id');
+            $movie = Movie::find($id);
+            if($movie == NULL || $movie->userID != $userID) {
+                return response()->json([
+                    'error' => 'Movie not found'
+                ], 400);
+            }else {
+                $movie->delete();
+
+                return response()->json([
+                    'msg' => 'Movie Deleted Successfully'
+                ], 400);
             }
         }else {
             return $response;
