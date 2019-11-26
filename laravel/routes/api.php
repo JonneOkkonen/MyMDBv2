@@ -21,3 +21,4 @@ Route::get('movies', 'ApiController@all');
 Route::get('movie/{id}', 'ApiController@single');
 Route::get('movies/count', 'ApiController@count');
 Route::get('movies/add', 'ApiController@add');
+Route::get('movies/update/{id}', 'ApiController@update');
