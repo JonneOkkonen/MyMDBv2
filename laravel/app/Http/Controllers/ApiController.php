@@ -20,6 +20,24 @@ class ApiController extends Controller
         }
     }
 
+    public function single($id)
+    {
+        $response = self::CheckAPIKey(request('key'));
+        if($response == "APIKeyCorrect") {
+            $userID = DB::table('users')->where('api_token', request('key'))->value('id');
+            $movies = Movies::all()->where('userID', $userID)->where('movieID', $id);
+            if($movies == "[]") {
+                return response()->json([
+                    'error' => 'Movie not found'
+                ], 400);
+            }else {
+                return response()->json($movies, 200);
+            }
+        }else {
+            return $response;
+        }
+    }
+
     public function count()
     {
         $response = self::CheckAPIKey(request('key'));
