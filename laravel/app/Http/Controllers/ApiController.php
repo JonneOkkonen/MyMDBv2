@@ -40,7 +40,7 @@ class ApiController extends Controller
         }else {
             $userID = Auth::guard('api')->user()->id;
         }
-        $movies = Movie::all()->where('userID', $userID);
+        $movies = DB::table('movies')->where('userID', $userID)->orderBy('name', 'asc')->get();
         if($movies == "[]") {
             return response()->json([
                 'msg' => '0 movies found'
@@ -104,7 +104,7 @@ class ApiController extends Controller
 
             return response()->json([
                 'msg' => 'Movie Deleted Successfully'
-            ], 400);
+            ], 200);
         }
     }
 

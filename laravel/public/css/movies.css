@@ -85,3 +85,19 @@ body {
 .poster-img-top:hover {
     border-color: lightblue;
 }
+.td_button {
+    padding: 10px !important;
+}
+.iconButton {
+    border-radius: 8px;
+    width: 45px;
+    height: 40px;
+    padding: 0px;
+}
+#refreshButton {
+    height: 40px;
+    float: right;
+    border-radius: 5px;
+    padding: 0px 15px 0px 15px;
+    z-index: 9999;
+}

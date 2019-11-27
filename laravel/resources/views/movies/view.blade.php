@@ -39,6 +39,7 @@
 <!-- Main Content -->
 <div class="tab-content">
         <div id="gridView" class="tab-pane fade">
+            <button class="btn btn-dark" id="refreshButton" onclick="OnLoad()">Refresh</button>
             <div class="row" id="movieGrid"></div>
         </div>
         <div id="listView" class="tab-pane fade">
@@ -48,26 +49,19 @@
                         <th scope="col">Name</th>
                         <th scope="col">Type</th>
                         <th scope="col" width="30px"></th>
-                        <th scope="col" width="30px"></th>
+                        <th scope="col" class="td_button" width="30px"><button class="btn btn-light" id="refreshButton" onclick="OnLoad()">Refresh</button></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>MovieName</td>
-                        <td>MovieType</td>
-                        <td></td>
-                        <td></td>
-                </tbody>
+                <tbody id="movieList"></tbody>
             </table>
         </div>
 </div>
 <!-- SelectView with JavaScript -->
 <script type="text/javascript" src="{{ asset('js/viewSelector.js') }}"></script>
 <script>
-    // Load Movies
+    // Load Page Content
     $(document).ready(function() {
-        LoadMovieCount();
-        LoadMovies();
+        OnLoad();
     });
 </script>
 @endsection

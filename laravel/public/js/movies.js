@@ -1,3 +1,10 @@
+// Load Page Data
+function OnLoad() {
+    LoadMovieCount();
+    LoadMovies();
+}
+
+// Load Movies Data from API
 function LoadMovies() {
     let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies";
     let sessionToken = GetCookie('mymdb_session');
@@ -11,6 +18,7 @@ function LoadMovies() {
     }).done(function(response) {
         console.log(response);
         LoadGridView(response);
+        LoadTableView(response);
     }).fail(function(response) {
         console.log(response);
     });
@@ -27,7 +35,6 @@ function LoadMovieCount() {
     let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies/count";
     // SessionToken
     let sessionToken = GetCookie('mymdb_session');
-
     // Ajax GET Request
     $.ajax({
         url: url,
@@ -47,6 +54,8 @@ function LoadMovieCount() {
         document.getElementById("subHeading").innerHTML = content;
         // MovieTypeBar elem
         let movieTypeBar = document.getElementById("movieTypeBar");
+        // Make sure that view is empty
+        movieTypeBar.innerHTML = "";
         // Create Bar Sections
         for(let type of response) {
             if(type.type != "All") {
@@ -79,7 +88,7 @@ function GetRandomColor() {
   }
 
 /*
-    Movie Template:
+    Movie Grid Item Template:
     <div class='col'>
         <div class='poster'>
             <img class='poster-img-top' src="{{ asset('img/no-poster-available.jpg') }}" alt='movieName' href="#movieID">
@@ -90,8 +99,13 @@ function GetRandomColor() {
     </div>
 */
 function LoadGridView(data) {
+    // GridView Element
     let elem = document.getElementById("movieGrid");
+    // Make sure that view is empty
+    elem.innerHTML = "";
+    // Create MovieCards for all movies
     for(let movie of data) {
+        // MovieCard
         let movieCard = `
             <div class='col'>
                 <div class='poster'>
@@ -102,6 +116,58 @@ function LoadGridView(data) {
                 </div>
             </div>
         `;
+        // Add Movie Card to GridView
         elem.innerHTML += movieCard;
+    }
+}
+
+/*
+    Movie List Row Template:
+    <tr>
+        <td>MovieName</td>
+        <td>MovieType</td>
+        <td></td>
+        <td></td>
+    </tr>
+*/
+function LoadTableView(data) {
+    // TableView Element
+    let elem = document.getElementById("movieList");
+    // Make sure that view is empty
+    elem.innerHTML = "";
+    // Add all movies to listview
+    for(let movie of data) {
+        // MovieRow
+        let movieRow = `
+            <tr>
+                <td>${movie.name}</td>
+                <td>${movie.type}</td>
+                <td></td>
+                <td class='td_button'><button class='btn btn-danger iconButton' value='${movie.movieID}' 
+                onclick='DeleteMovie(this.value)'><img src='img/trash.svg' style='width: 25px; height: 25px;'></button></td>
+            </tr>
+        `;
+        elem.innerHTML += movieRow;
+    }
+}
+
+// Delete Movie
+function DeleteMovie(id) {
+    if (confirm('Are you sure you want to delete this movie?')) {
+        let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies/delete/" + id;
+        let sessionToken = GetCookie('mymdb_session');
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "GET",
+            data: {
+                session_token: sessionToken
+            }
+        }).done(function(response) {
+            console.log(response);
+            OnLoad();
+        }).fail(function(response) {
+            console.log(response);
+        });
     }
 }
