@@ -17,7 +17,7 @@ class CreateMoviesTable extends Migration
             $table->bigIncrements('movieID');
             $table->unsignedBigInteger('userID');
             $table->string('name');
-            $table->string('type')->nullable();
+            $table->string('type')->nullable()->default("NoValue");
             $table->string('imdbID')->nullable();
             $table->string('language')->nullable();
             $table->string('country')->nullable();
