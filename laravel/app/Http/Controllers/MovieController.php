@@ -30,4 +30,10 @@ class MovieController extends Controller
     public function add() {
         return view('movies/add');
     }
+
+    public function detail($id) {
+        // Save MovieID to cookie
+        setcookie("movieID", $id);
+        return view('movies/detail');
+    }
 }

@@ -27,3 +27,6 @@ Route::get('/movies', 'MovieController@view')->name('movies');
 
 // Add Movies
 Route::get('/movies/add', 'MovieController@add')->name('addMovie');
+
+// Movie Detail Page
+Route::get('/movies/{id}', 'MovieController@detail');

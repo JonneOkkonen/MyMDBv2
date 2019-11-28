@@ -4,6 +4,37 @@ function OnLoad() {
     LoadMovies();
 }
 
+function OnDetailsLoad() {
+    let movieID = GetCookie("movieID");
+    if(movieID != null) {
+        LoadSingleMovie(movieID);
+    }else {
+        // Display movieID missing error
+    }
+}
+
+// Load Single Movie from API
+function LoadSingleMovie(id) {
+    let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movie/" + id;
+    let sessionToken = GetCookie('mymdb_session');
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        data: {
+            session_token: sessionToken
+        }
+    }).done(function(response) {
+        console.log(response);
+        LoadDetailsView(response);
+    }).fail(function(response) {
+        console.log(response.responseJSON.error);
+        if(response.responseJSON.error == "Movie not found") {
+            document.getElementById("movieDetailTitle").innerHTML = "Movie not found";
+        }
+    });
+}
+
 // Load Movies Data from API
 function LoadMovies() {
     let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies";
@@ -109,9 +140,9 @@ function LoadGridView(data) {
         let movieCard = `
             <div class='col'>
                 <div class='poster'>
-                    <img class='poster-img-top' src='img/no-poster-available.jpg' alt='${movie.name}' href='#movieID'>
+                    <a href='movies/${movie.movieID}'><img class='poster-img-top' src='img/no-poster-available.jpg' alt='${movie.name}'></a>
                     <br>
-                    <span class='movieName'>${movie.name}</span>
+                    <span class='movieName'><a href="movies/${movie.movieID}">${movie.name}</a></span>
                     <span class='movieType'>${movie.type}</span>
                 </div>
             </div>
@@ -140,7 +171,7 @@ function LoadTableView(data) {
         // MovieRow
         let movieRow = `
             <tr>
-                <td>${movie.name}</td>
+                <td><a href="movies/${movie.movieID}">${movie.name}</a></td>
                 <td>${movie.type}</td>
                 <td></td>
                 <td class='td_button'><button class='btn btn-danger iconButton' value='${movie.movieID}' 
@@ -149,6 +180,59 @@ function LoadTableView(data) {
         `;
         elem.innerHTML += movieRow;
     }
+}
+
+// Load Movie Data to DetailsView
+function LoadDetailsView(data) {
+    // Set MovieID to delete and edit button
+    document.getElementById("deleteButton").value = data[0].movieID;
+    document.getElementById("editButton").value = data[0].movieID;
+    // Load data to DetailViewElements
+    if(data[0].posterURL) {
+        document.getElementById("poster").src = data[0].posterURL;
+    }
+    // Add Ratings
+    document.getElementById("imdbRating").innerHTML = data[0].rating;
+    document.getElementById("rottenTomatoesRating").innerHTML = data[0].rottenTomatoes;
+
+    // Add Movie Title
+    document.getElementById("movieDetailTitle").innerHTML = data[0].name;
+
+    // Add Data to Content1 view
+    // Ignore fields with null values
+    let year = "", country = "", rated = "", runtime = "";
+    if(data[0].year != null) year = ", " + data[0].year;
+    if(data[0].country != null) country = ", " + data[0].country;
+    if(data[0].rated != null) rated = ", " + data[0].rated;
+    if(data[0].runtime != null) runtime = ", " + data[0].runtime;
+    document.getElementById("movieDetailContent1").innerHTML = data[0].type + year + country + rated + runtime;
+
+    // Add Data to Content2 view
+    // Ignore fields with null values
+    let released = "", genre = "", language = "", production = "", actors = "", 
+        director = "", writer = "", awards = "", plot = "";
+    if(data[0].released != null) released = `<p class="movieDetailRow"><b>Released:</b> ${data[0].released}</p>`;
+    if(data[0].genre != null) genre = `<p class="movieDetailRow"><b>Genre:</b> ${data[0].genre}</p>`;
+    if(data[0].language != null) language = `<p class="movieDetailRow"><b>Language:</b> ${data[0].language}</p>`;
+    if(data[0].production != null) production = `<p class="movieDetailRow"><b>Production:</b> ${data[0].production}</p>`;
+    if(data[0].actors != null) actors = `<p class="movieDetailRow"><b>Actors:</b> ${data[0].actors}</p>`;
+    if(data[0].director != null) director = `<p class="movieDetailRow"><b>Director:</b> ${data[0].director}</p>`;
+    if(data[0].writer != null) writer = `<p class="movieDetailRow"><b>Writer:</b> ${data[0].writer}</p>`;
+    if(data[0].awards != null) awards = `<p class="movieDetailRow"><b>Awards:</b> ${data[0].awards}</p>`;
+    if(data[0].plot != null) plot = `<p class="movieDetailRow"><b>Plot:</b></p>
+                                     <p class="movieDetailRow">${data[0].plot}</p>`;
+    document.getElementById("movieDetailContent2").innerHTML = `
+        ${released}
+        ${genre}
+        ${language}
+        ${production}
+        ${actors}
+        ${director}
+        ${writer}
+        ${awards}
+        <br>
+        ${plot}
+    `;
 }
 
 // Delete Movie

@@ -129,4 +129,25 @@ body {
 .ratingText {
     font-size: 16px;
     font-weight: bold;
+    font-weight: 400;
+}
+#movieDetailTitle {
+    font-size: 50px;
+    margin-bottom: 0px;
+}
+#movieDetailContent1 {
+    font-size: 25px;
+    font-weight: 500;
+}
+#movieDetailContent2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.movieDetailRow {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+#movieDetails {
+    max-width: 1500px;
 }

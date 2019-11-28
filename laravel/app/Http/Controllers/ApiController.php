@@ -67,7 +67,7 @@ class ApiController extends Controller
         }else {
             $userID = Auth::guard('api')->user()->id;
         }
-        $movies = Movie::all()->where('userID', $userID)->where('movieID', $id);
+        $movies = DB::table('movies')->where('userID', $userID)->where('movieID', $id)->get();
         if($movies == "[]") {
             return response()->json([
                 'error' => 'Movie not found'
@@ -130,9 +130,9 @@ class ApiController extends Controller
             $movie->userID = $userID;
             $movie->name = request('name');
             if(request('type') != NULL) $movie->type = request('type');
-            if(request('imdbID') != NULL) $movie->runtime = request('imdbID');
-            if(request('language') != NULL) $movie->runtime = request('language');
-            if(request('country') != NULL) $movie->runtime = request('country');
+            if(request('imdbID') != NULL) $movie->imdbID = request('imdbID');
+            if(request('language') != NULL) $movie->language = request('language');
+            if(request('country') != NULL) $movie->country = request('country');
             if(request('runtime') != NULL) $movie->runtime = request('runtime');
             if(request('year') != NULL) $movie->year = request('year');
             if(request('genre') != NULL) $movie->genre = request('genre');
@@ -142,8 +142,8 @@ class ApiController extends Controller
             if(request('director') != NULL) $movie->director = request('director');
             if(request('writer') != NULL) $movie->writer = request('writer');
             if(request('rating') != NULL) $movie->rating = request('rating');
-            if(request('awards') != NULL) $movie->runtime = request('awards');
-            if(request('production') != NULL) $movie->runtime = request('production');
+            if(request('awards') != NULL) $movie->awards = request('awards');
+            if(request('production') != NULL) $movie->production = request('production');
             if(request('rottenTomatoes') != NULL) $movie->rottenTomatoes = request('rottenTomatoes');
             if(request('plot') != NULL) $movie->plot = request('plot');
             if(request('posterURL') != NULL) $movie->posterURL = request('posterURL');
