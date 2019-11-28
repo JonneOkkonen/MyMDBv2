@@ -58,10 +58,11 @@
 </div>
 <!-- SelectView with JavaScript -->
 <script type="text/javascript" src="{{ asset('js/movies/viewSelector.js') }}"></script>
-<script>
+<script type="text/javascript">
     // Load Page Content
     $(document).ready(function() {
         OnLoad();
+        $('[data-toggle="tooltip"]').tooltip('show');
     });
 </script>
 @endsection

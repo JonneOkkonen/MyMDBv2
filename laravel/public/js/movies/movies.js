@@ -137,12 +137,14 @@ function LoadGridView(data) {
     // Create MovieCards for all movies
     for(let movie of data) {
         // MovieCard
+        let poster = "img/no-poster-available.jpg";
+        if(movie.posterURL != null) poster = movie.posterURL;
         let movieCard = `
             <div class='col'>
                 <div class='poster'>
-                    <a href='movies/${movie.movieID}'><img class='poster-img-top' src='img/no-poster-available.jpg' alt='${movie.name}'></a>
+                    <a href='movies/${movie.movieID}'><img class='poster-img-top' src='${poster}' alt='${movie.name}'></a>
                     <br>
-                    <span class='movieName'><a href="movies/${movie.movieID}">${movie.name}</a></span>
+                    <span class='movieName'><a href="movies/${movie.movieID}" data-toggle="tooltip" title="${movie.name}">${movie.name}</a></span>
                     <span class='movieType'>${movie.type}</span>
                 </div>
             </div>
