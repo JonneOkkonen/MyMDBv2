@@ -30,3 +30,6 @@ Route::get('/movies/add', 'MovieController@add')->name('addMovie');
 
 // Movie Detail Page
 Route::get('/movies/{id}', 'MovieController@detail');
+
+// Movie Edit Page
+Route::get('/movies/edit/{id}', 'MovieController@edit');

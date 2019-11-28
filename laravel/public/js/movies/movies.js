@@ -190,7 +190,7 @@ function LoadDetailsView(data) {
     document.getElementById("deleteButton").value = data[0].movieID;
     document.getElementById("editButton").value = data[0].movieID;
     // Load data to DetailViewElements
-    if(data[0].posterURL) {
+    if(data[0].posterURL != null) {
         document.getElementById("poster").src = data[0].posterURL;
     }
     // Add Ratings

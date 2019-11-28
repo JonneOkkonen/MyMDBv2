@@ -4,7 +4,7 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/cookie.js') }}"></script>
     <script src="{{ asset('js/movies/imdbUpdate.js') }}"></script>
-    <script src="{{ asset('js/movies/addMovie.js') }}"></script>
+    <script src="{{ asset('js/movies/saveMovie.js') }}"></script>
 @endsection
 
 @section('styles')
@@ -12,7 +12,7 @@
 @endsection
 
 @section('heading')
-    <h1>Add Movie</h1>
+    <h1 id="heading">Add/Edit Movie</h1>
 @endsection
 
 @section('content')
@@ -141,10 +141,19 @@
     </div>
     <script>
         $(document).ready(function() {
+            switch(GetCookie("mode")) {
+                case "edit":
+                    document.getElementById("heading").innerHTML = "Edit movie";
+                    LoadSingleMovie();
+                break;
+                case "add":
+                    document.getElementById("heading").innerHTML = "Add movie";
+                break;
+            }
             $("#submitForm").click(function(event) {
                 // Prevent default action
                 event.preventDefault();
-                AddMovie();
+                SaveMovie();
             });
         });
     </script>
