@@ -151,3 +151,9 @@ body {
 #movieDetails {
     max-width: 1500px;
 }
+.pageSelector {
+    margin: 15px;
+}
+.page-link {
+    height: 43px;
+}

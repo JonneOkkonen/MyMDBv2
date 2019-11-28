@@ -24,6 +24,8 @@ class MovieController extends Controller
      */
     public function view()
     {
+        // Set page cookie to 1
+        setcookie("page", 1);
         return view('movies/view');
     }
 

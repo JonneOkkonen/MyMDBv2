@@ -1,7 +1,7 @@
 // Load Page Data
 function OnLoad() {
     LoadMovieCount();
-    LoadMovies();
+    LoadMovies(GetCookie("page"));
 }
 
 function OnDetailsLoad() {
@@ -35,8 +35,13 @@ function LoadSingleMovie(id) {
     });
 }
 
+function ChangePage(index) {
+    SetCookie("page", index);
+    LoadMovies(index);
+}
+
 // Load Movies Data from API
-function LoadMovies() {
+function LoadMovies(page) {
     let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies";
     let sessionToken = GetCookie('mymdb_session');
     $.ajax({
@@ -44,12 +49,13 @@ function LoadMovies() {
         cache: false,
         type: "GET",
         data: {
-            session_token: sessionToken
+            session_token: sessionToken,
+            page: page
         }
     }).done(function(response) {
-        console.log(response);
-        LoadGridView(response);
-        LoadTableView(response);
+        OnLoadPagination(response);
+        LoadGridView(response.data);
+        LoadTableView(response.data);
     }).fail(function(response) {
         console.log(response);
     });

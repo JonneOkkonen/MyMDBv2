@@ -13,3 +13,7 @@ function GetCookie(cname) {
     }
     return "";
 }
+
+function SetCookie(cname, cvalue) {
+    document.cookie = cname + "=" + cvalue;
+  }

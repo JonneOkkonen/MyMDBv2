@@ -4,6 +4,7 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/movies/movies.js') }}"></script>
     <script src="{{ asset('js/cookie.js') }}"></script>
+    <script src="{{ asset('js/pagination.js') }}"></script>
 @endsection
 
 @section('styles')
@@ -55,6 +56,23 @@
                 <tbody id="movieList"></tbody>
             </table>
         </div>
+        <!--Page Selector-->
+        <nav class="pageSelector">
+            <ul class="pagination" id="pageSelector">
+                <li class="page-item" id="previous" onclick="Previous()">
+                    <a class="page-link">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item" id="next">
+                    <a class="page-link" onclick="Next()">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 </div>
 <!-- SelectView with JavaScript -->
 <script type="text/javascript" src="{{ asset('js/movies/viewSelector.js') }}"></script>

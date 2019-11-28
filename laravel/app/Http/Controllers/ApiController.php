@@ -40,7 +40,7 @@ class ApiController extends Controller
         }else {
             $userID = Auth::guard('api')->user()->id;
         }
-        $movies = DB::table('movies')->where('userID', $userID)->orderBy('name', 'asc')->get();
+        $movies = Movie::where('userID', $userID)->orderBy('name', 'asc')->paginate(2);
         if($movies == "[]") {
             return response()->json([
                 'msg' => '0 movies found'
