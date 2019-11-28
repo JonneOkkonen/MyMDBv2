@@ -238,4 +238,41 @@ class ApiController extends Controller
                             ->get();
         return response()->json($movies, 200);
     }
+
+    // OMDb API search
+    public function OMDbSearch() {
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                if(request('id') != null) {
+                    // Search
+                    $url = "http://www.omdbapi.com/?i=" . request("id") . "&apikey=11626305&plot=full";
+                    $json = json_decode(stream_get_contents(fopen($url, "rb")));
+                    // Check for error
+                    if($json->{"Response"} == "False") {
+                        return response()->json([
+                            'error' => $json->{"Error"}
+                        ], 400);
+                    }
+                    if($json->{"Response"} == "True") {
+                        return response()->json($json, 200);
+                    }
+                }else {
+                    return response()->json([
+                        'error' => 'imdbID missing'
+                    ], 400);
+                }
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            return response()->json([
+                'error' => 'OMDbSearch is not available with api token'
+            ], 400);
+        }
+    }
 }

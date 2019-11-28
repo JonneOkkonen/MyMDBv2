@@ -175,7 +175,9 @@ function LoadTableView(data) {
             <tr>
                 <td><a href="movies/${movie.movieID}">${movie.name}</a></td>
                 <td>${movie.type}</td>
-                <td></td>
+                <td class='td_button'><button class="btn btn-primary iconButton">
+                <a href="movies/edit/${movie.movieID}" id="editButton"><img src='img/pencil.svg' style='width: 25px; height: 25px;'></a>
+            </button></td>
                 <td class='td_button'><button class='btn btn-danger iconButton' value='${movie.movieID}' 
                 onclick='DeleteMovie(this.value)'><img src='img/trash.svg' style='width: 25px; height: 25px;'></button></td>
             </tr>
@@ -186,9 +188,10 @@ function LoadTableView(data) {
 
 // Load Movie Data to DetailsView
 function LoadDetailsView(data) {
-    // Set MovieID to delete and edit button
+    // Set MovieID to delete
     document.getElementById("deleteButton").value = data[0].movieID;
-    document.getElementById("editButton").value = data[0].movieID;
+    // Set link to edit page
+    document.getElementById("editButton").href = "edit/" + data[0].movieID;
     // Load data to DetailViewElements
     if(data[0].posterURL != null) {
         document.getElementById("poster").src = data[0].posterURL;

@@ -29,8 +29,8 @@
             <br>
             <div class="row">
                 <div class="col-6 text-right">
-                    <button class="btn btn-primary iconButton" id="editButton">
-                        <img src='../img/pencil.svg' style='width: 25px; height: 25px;'>
+                    <button class="btn btn-primary iconButton">
+                        <a href="#" id="editButton"><img src='../img/pencil.svg' style='width: 25px; height: 25px;'></a>
                     </button>
                 </div>
                 <div class="col-6 text-left">

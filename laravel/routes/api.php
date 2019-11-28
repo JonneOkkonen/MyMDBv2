@@ -19,5 +19,6 @@ Route::get('movies/update/{id}', 'ApiController@update');
 Route::get('movies/delete/{id}', 'ApiController@delete');
 Route::get('movies/count', 'ApiController@count');
 Route::get('movies/add', 'ApiController@add');
+Route::get('omdb/search', 'ApiController@OMDbSearch');
 
 Route::get('test', 'ApiController@test');
