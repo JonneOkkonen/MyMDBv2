@@ -26,4 +26,8 @@ class MovieController extends Controller
     {
         return view('movies/view');
     }
+
+    public function add() {
+        return view('movies/add');
+    }
 }

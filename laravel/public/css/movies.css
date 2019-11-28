@@ -101,3 +101,32 @@ body {
     padding: 0px 15px 0px 15px;
     z-index: 9999;
 }
+#form {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+#formContainer {
+    max-width: 1500px;
+}
+.inputButton {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 38px;
+    padding: 0px 15px 0px 15px;
+}
+.submitButton {
+    border-radius: 8px;
+    padding: 0px 15px 0px 15px;
+    width: 100%;
+    height: 38px;
+}
+.form-group {
+    text-align: left;
+}
+#typeSelector {
+    height: 38px;
+}
+.ratingText {
+    font-size: 16px;
+    font-weight: bold;
+}

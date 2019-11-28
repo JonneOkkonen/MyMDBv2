@@ -2,7 +2,7 @@
 
 @section('scripts')
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
-    <script src="{{ asset('js/movies.js') }}"></script>
+    <script src="{{ asset('js/movies/movies.js') }}"></script>
     <script src="{{ asset('js/cookie.js') }}"></script>
 @endsection
 
@@ -57,7 +57,7 @@
         </div>
 </div>
 <!-- SelectView with JavaScript -->
-<script type="text/javascript" src="{{ asset('js/viewSelector.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/movies/viewSelector.js') }}"></script>
 <script>
     // Load Page Content
     $(document).ready(function() {

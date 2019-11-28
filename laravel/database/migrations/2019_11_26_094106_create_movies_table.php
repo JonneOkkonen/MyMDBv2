@@ -26,15 +26,15 @@ class CreateMoviesTable extends Migration
             $table->string('genre')->nullable();
             $table->string('rated')->nullable();
             $table->string('released')->nullable();
-            $table->string('actors')->nullable();
+            $table->string('actors', '1000')->nullable();
             $table->string('director')->nullable();
-            $table->string('writer')->nullable();
+            $table->string('writer', '1000')->nullable();
             $table->string('rating')->nullable();
             $table->string('awards')->nullable();
             $table->string('production')->nullable();
             $table->string('rottenTomatoes')->nullable();
-            $table->string('plot')->nullable();
-            $table->string('posterURL')->nullable();
+            $table->string('plot', '1000')->nullable();
+            $table->string('posterURL', '1000')->nullable();
             $table->timestamps();
             
             // Add Foreign Keys

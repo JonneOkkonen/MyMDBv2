@@ -52,8 +52,18 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('movies') }}">{{ __('Movies') }}</a>
+                            <li class="nav-item dropdown">
+                                <a id="moviesDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Movies') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moviesDropdown">
+                                    <a class="dropdown-item" href="{{ route('movies') }}">
+                                        {{ __('MovieCollection') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('addMovie') }}">
+                                        {{ __('Add Movie') }}
+                                    </a>
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">{{ __('TV-series') }}</a>
