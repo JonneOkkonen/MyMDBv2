@@ -22,25 +22,24 @@ function LoadDataToForm(imdb) {
     }
     document.getElementById("rottenTomatoesScore").innerHTML = imdb.Ratings[1].Value;
     document.getElementById("rottenTomatoesRating").value = imdb.Ratings[1].Value;
-    }
+}
 
-    function imdbUpdate() {
-        var imdbID = document.getElementById("imdbID").value; 
-        let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/omdb/search";
-        let sessionToken = GetCookie('mymdb_session');
-        $.ajax({
-            url: url,
-            cache: false,
-            type: "GET",
-            data: {
-                session_token: sessionToken,
-                id: imdbID
-            }
-        }).done(function(response) {
-            console.log(response);
-            LoadDataToForm(response);
-        }).fail(function(response) {
-            console.log(response.responseJSON.error);
-        });
-    }
+function imdbUpdate() {
+    var imdbID = document.getElementById("imdbID").value; 
+    let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/omdb/search";
+    let sessionToken = GetCookie('mymdb_session');
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        data: {
+            session_token: sessionToken,
+            id: imdbID
+        }
+    }).done(function(response) {
+        console.log(response);
+        LoadDataToForm(response);
+    }).fail(function(response) {
+        console.log(response.responseJSON.error);
+    });
 }

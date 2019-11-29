@@ -23,7 +23,6 @@ class ApiController extends Controller
     }
 
     // List all movies from user
-    // Add Pagination in future
     public function all()
     {
         if(self::$sessionAuth) {
@@ -40,7 +39,7 @@ class ApiController extends Controller
         }else {
             $userID = Auth::guard('api')->user()->id;
         }
-        $movies = Movie::where('userID', $userID)->orderBy('name', 'asc')->paginate(2);
+        $movies = Movie::where('userID', $userID)->orderBy('name', 'asc')->paginate(100);
         if($movies == "[]") {
             return response()->json([
                 'msg' => '0 movies found'
@@ -237,6 +236,43 @@ class ApiController extends Controller
                             ->groupBy(DB::raw('type WITH ROLLUP'))
                             ->get();
         return response()->json($movies, 200);
+    }
+
+    // List all movies from user
+    public function search()
+    {
+        if(self::$sessionAuth) {
+            // Decrypt Session ID
+            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
+                $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
+            }
+            else {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
+        }else {
+            $userID = Auth::guard('api')->user()->id;
+        }
+        if(request("searchTerm") != null) {
+            $searchTerm = request("searchTerm");
+        }else {
+            return response()->json([
+                'error' => 'Search term missing'
+            ], 400);
+        }
+        $movies = Movie::where('userID', $userID)
+                        ->where('name', 'LIKE', "%{$searchTerm}%")
+                        ->orderBy('name', 'asc')
+                        ->paginate(10);
+        if($movies == "[]") {
+            return response()->json([
+                'msg' => '0 movies found'
+            ], 400);
+        }else {
+            return response()->json($movies, 200);
+        }
     }
 
     // OMDb API search

@@ -25,7 +25,6 @@ function LoadSingleMovie(id) {
             session_token: sessionToken
         }
     }).done(function(response) {
-        console.log(response);
         LoadDetailsView(response);
     }).fail(function(response) {
         console.log(response.responseJSON.error);
@@ -36,13 +35,15 @@ function LoadSingleMovie(id) {
 }
 
 function ChangePage(index) {
+    let searchTerm = document.getElementById("search").value;
     SetCookie("page", index);
-    LoadMovies(index);
+    LoadMovies(index, searchTerm);
 }
 
 // Load Movies Data from API
-function LoadMovies(page) {
+function LoadMovies(page, search = "") {
     let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies";
+    if(search != "") url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies/search";
     let sessionToken = GetCookie('mymdb_session');
     $.ajax({
         url: url,
@@ -50,14 +51,15 @@ function LoadMovies(page) {
         type: "GET",
         data: {
             session_token: sessionToken,
-            page: page
+            page: page,
+            searchTerm: search
         }
     }).done(function(response) {
         OnLoadPagination(response);
         LoadGridView(response.data);
         LoadTableView(response.data);
     }).fail(function(response) {
-        console.log(response);
+        console.log(response.responseJSON.error);
     });
 }
 
@@ -265,4 +267,48 @@ function DeleteMovie(id) {
             console.log(response);
         });
     }
+}
+
+// Search Movie
+function Search(value) {
+    let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies/search";
+    let sessionToken = GetCookie('mymdb_session');
+    if(value != "") {
+        $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        data: {
+            session_token: sessionToken,
+            searchTerm: value
+        }
+        }).done(function(response) {
+            // Make sure Result list is empty
+            document.getElementById("results").innerHTML = "";
+            // Load data to result list
+            for(let item of response.data) {
+                document.getElementById("results").innerHTML += `<option id="${item.movieID}" value="${item.name}"></option>`;
+            }
+        }).fail(function(response) {
+            console.log(response.responseJSON.error);
+        });
+    } 
+}
+
+// Show Search Results in grid/listview
+function SearchButton() {
+    // Show Stop Search Button
+    document.getElementById("stopSearchButton").style = "display: block";
+    // Load Results
+    LoadMovies("1", document.getElementById("search").value);
+}
+
+// Stop Searching
+function StopSearch() {
+    // Clear search field
+    document.getElementById("search").value = "";
+    // Refresh View
+    OnLoad();
+    // Hide Stop Search Button
+    document.getElementById("stopSearchButton").style = "display: none";
 }

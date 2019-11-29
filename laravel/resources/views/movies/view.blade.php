@@ -23,6 +23,16 @@
 @endsection
 
 @section('header-bottom')
+    <!--SearchField-->
+    <div class="search">
+        <div class="input-group text">
+            <input type="text" class="form-control" id="search" list="results" placeholder="Search...">
+            <div class="input-group-btn">
+                <input type="button" class="btn btn-primary inputButton" value="Search" onclick="SearchButton()">
+            </div>
+            <datalist id="results"></datalist>
+        </div>
+    </div>
     <!--Tab Selector-->
     <ul class="nav nav-tabs" id="views">
         <li class="nav-item tabItem" id="gridSelector">
@@ -38,9 +48,13 @@
 
 @section('content')
 <!-- Main Content -->
+<div class="row buttonRow">
+    <button class="btn btn-dark buttonRowItem" id="stopSearchButton" style="display: none;" 
+            onclick="StopSearch()">Stop Search</button>
+    <button class="btn btn-dark buttonRowItem" id="refreshButton" onclick="OnLoad()">Refresh</button>
+</div>
 <div class="tab-content">
         <div id="gridView" class="tab-pane fade">
-            <button class="btn btn-dark" id="refreshButton" onclick="OnLoad()">Refresh</button>
             <div class="row" id="movieGrid"></div>
         </div>
         <div id="listView" class="tab-pane fade">
@@ -50,7 +64,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Type</th>
                         <th scope="col" width="30px"></th>
-                        <th scope="col" class="td_button" width="30px"><button class="btn btn-light" id="refreshButton" onclick="OnLoad()">Refresh</button></th>
+                        <th scope="col" width="30px"></th>
                     </tr>
                 </thead>
                 <tbody id="movieList"></tbody>
@@ -77,10 +91,26 @@
 <!-- SelectView with JavaScript -->
 <script type="text/javascript" src="{{ asset('js/movies/viewSelector.js') }}"></script>
 <script type="text/javascript">
-    // Load Page Content
     $(document).ready(function() {
+        // Load Page Content
         OnLoad();
+        // Tooltip for MovieName
         $('[data-toggle="tooltip"]').tooltip('show');
+        // Search EventListener
+        document.getElementById("search").addEventListener("keyup", function(e) {
+            // Clear Search Field with esc
+            if(e.key == "Escape") {
+                document.getElementById("results").innerHTML = "";
+                document.getElementById("search").value = "";
+            }
+            // When user has clicked item go to that movies detail page
+            for(let item of document.getElementById("results").childNodes) {
+                if(item.value == this.value) window.location.href = "movies/" + item.id;
+            }
+            if(e.keyCode < 37 || e.keyCode > 40) {
+                Search(this.value);
+            }
+        });
     });
 </script>
 @endsection
