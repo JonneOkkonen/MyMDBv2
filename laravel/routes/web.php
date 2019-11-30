@@ -22,6 +22,10 @@ Auth::routes();
 // HomePage (after login)
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Sessions Page
+Route::get('/session', 'HomeController@session')->name('session');
+Route::post('/session', 'HomeController@session_delete');
+
 // Movies Page
 Route::get('/movies', 'MovieController@view')->name('movies');
 

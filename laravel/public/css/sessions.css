@@ -1,0 +1,12 @@
+#sessionsTable {
+    max-width: 1500px;
+    margin-top: 40px;
+    margin: auto;
+    width: 90%;
+}
+.iconButton {
+    border-radius: 8px;
+    width: 45px;
+    height: 40px;
+    padding: 0px;
+}
