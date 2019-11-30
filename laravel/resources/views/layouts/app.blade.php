@@ -75,6 +75,9 @@
                                     <a class="dropdown-item" href="{{ route('session') }}">
                                         {{ __('Sessions') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('settings') }}">
+                                        {{ __('Settings') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('cPassword') }}">
                                         {{ __('Change Password') }}
                                     </a>

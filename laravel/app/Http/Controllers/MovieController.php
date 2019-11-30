@@ -35,7 +35,9 @@ class MovieController extends Controller
         setcookie("mode", "add");
 
         // Load Movie Type options from users settings
-        $options = explode(";", Setting::where('userID', Auth::id())->value('typeList'));
+        $options = explode(";", Setting::where('userID', Auth::id())
+                                        ->orderBy('typeList', 'asc')
+                                        ->value('typeList'));
         return view('movies/movie')->with('typeOptions', $options);
     }
 
@@ -51,7 +53,9 @@ class MovieController extends Controller
         setcookie("mode", "edit");
 
         // Load Movie Type options from users settings
-        $options = explode(";", Setting::where('userID', Auth::id())->value('typeList'));
+        $options = explode(";", Setting::where('userID', Auth::id())
+                                        ->orderBy('typeList', 'asc')
+                                        ->value('typeList'));
         return view("movies/movie")->with('typeOptions', $options);
     }
 }

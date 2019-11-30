@@ -41,3 +41,7 @@ Route::get('/movies/edit/{id}', 'MovieController@edit');
 // Change Password
 Route::get('/changePassword', 'Auth\ChangePasswordController@show')->name('cPassword');
 Route::post('/changePassword', 'Auth\ChangePasswordController@change');
+
+// Settings Page
+Route::get('/settings', 'HomeController@settings')->name('settings');
+Route::post('/settings', 'HomeController@changeSettings');

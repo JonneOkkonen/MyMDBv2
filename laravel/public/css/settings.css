@@ -1,0 +1,32 @@
+#formContainer {
+    margin-top: 40px;
+    max-width: 1000px;
+}
+.formButton {
+    height: 38px;
+    border-radius: 8px;
+    padding: 5px 15px 5px 15px;
+}
+#api_token {
+    font-size: 12px;
+}
+.submitButton {
+    border-radius: 8px;
+    padding: 0px 15px 0px 15px;
+    width: 100%;
+    height: 38px;
+    margin: auto;
+}
+.inputButton {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 38px;
+    padding: 0px 15px 0px 15px;
+}
+.deleteButton {
+    color: red;
+    cursor: pointer;
+}
+.deleteButton:hover {
+    text-decoration: underline;
+}
