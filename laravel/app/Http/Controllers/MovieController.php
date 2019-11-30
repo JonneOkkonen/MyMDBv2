@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Setting;
 
 class MovieController extends Controller
 {
@@ -32,7 +33,10 @@ class MovieController extends Controller
     public function add() {
         // Set mode to cookie
         setcookie("mode", "add");
-        return view('movies/movie');
+
+        // Load Movie Type options from users settings
+        $options = explode(";", Setting::where('userID', Auth::id())->value('typeList'));
+        return view('movies/movie')->with('typeOptions', $options);
     }
 
     public function detail($id) {
@@ -45,6 +49,9 @@ class MovieController extends Controller
         // Save MovieID and form mode to cookie
         setcookie("movieID", $id);
         setcookie("mode", "edit");
-        return view("movies/movie");
+
+        // Load Movie Type options from users settings
+        $options = explode(";", Setting::where('userID', Auth::id())->value('typeList'));
+        return view("movies/movie")->with('typeOptions', $options);
     }
 }

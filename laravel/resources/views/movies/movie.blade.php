@@ -47,8 +47,9 @@
                             <label for="type">Type</label>
                             <select name="type" class="form-control" id="typeSelector" required>
                                 <option value="NoValue">Select type</option>
-                                <option value="Blu-Ray">Blu-Ray</option>
-                                <option value="DVD">DVD</option>
+                                @foreach($typeOptions as $typeOption)
+                                    <option value="{{ $typeOption }}">{{ $typeOption }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
