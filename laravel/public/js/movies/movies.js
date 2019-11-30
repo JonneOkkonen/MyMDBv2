@@ -83,33 +83,43 @@ function LoadMovieCount() {
             session_token: sessionToken
         }
     }).done(function(response) {
-        // All Movie Count
-        let count = response[response.length - 1].count;
-        // SubHeading Content
-        let content = "You have " + count + " movies on your collection.";
-        // If count is one use movie instead of movies
-        if(count == 1) content = "You have " + count + " movie on your collection.";
-        // Set SubHeading Content
-        document.getElementById("subHeading").innerHTML = content;
-        // MovieTypeBar elem
-        let movieTypeBar = document.getElementById("movieTypeBar");
-        // Make sure that view is empty
-        movieTypeBar.innerHTML = "";
-        // Create Bar Sections
-        for(let type of response) {
-            if(type.type != "All") {
-                // Create div and set all attributes
-                let elem = document.createElement("div");
-                elem.setAttribute("class", "progress-bar");
-                elem.setAttribute("role", "progressbar");
-                elem.setAttribute("style", "width: " + type.count / count * 100 + "%; background-color: " + GetRandomColor());
-                elem.setAttribute("aria-valuenow", type.count / count * 100);
-                elem.setAttribute("aria-valuemin", "0");
-                elem.setAttribute("aria-valuemax", "100");
-                elem.innerHTML = type.count + " " + type.type;
-                // Append Div to MovieTypeBar
-                movieTypeBar.append(elem);
+        console.log(response.length);
+        if(response.length != "0") {
+            // All Movie Count
+            let count = response[response.length - 1].count;
+            // SubHeading Content
+            let content = "You have " + count + " movies on your collection.";
+            // If count is one use movie instead of movies
+            if(count == 1) content = "You have " + count + " movie on your collection.";
+            // Set SubHeading Content
+            document.getElementById("subHeading").innerHTML = content;
+            // MovieTypeBar elem
+            let movieTypeBar = document.getElementById("movieTypeBar");
+            // Show MovieTypeBar
+            movieTypeBar.style = "display: block";
+            // Make sure that view is empty
+            movieTypeBar.innerHTML = "";
+            // Create Bar Sections
+            for(let type of response) {
+                if(type.type != "All") {
+                    // Create div and set all attributes
+                    let elem = document.createElement("div");
+                    elem.setAttribute("class", "progress-bar");
+                    elem.setAttribute("role", "progressbar");
+                    elem.setAttribute("style", "width: " + type.count / count * 100 + "%; background-color: " + GetRandomColor());
+                    elem.setAttribute("aria-valuenow", type.count / count * 100);
+                    elem.setAttribute("aria-valuemin", "0");
+                    elem.setAttribute("aria-valuemax", "100");
+                    elem.innerHTML = type.count + " " + type.type;
+                    // Append Div to MovieTypeBar
+                    movieTypeBar.append(elem);
+                }
             }
+        }else {
+            // Set SubHeading Content
+            document.getElementById("subHeading").innerHTML = "You don't have any movies yet.";
+            // Hide MovieTypeBar elem
+            let movieTypeBar = document.getElementById("movieTypeBar").style = "display: none";
         }
     }).fail(function(response) {
         console.log(response);

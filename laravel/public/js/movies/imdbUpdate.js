@@ -20,8 +20,13 @@ function LoadDataToForm(imdb) {
     if(imdb.Poster != "") {
         document.getElementById("poster").src = imdb.Poster;
     }
-    document.getElementById("rottenTomatoesScore").innerHTML = imdb.Ratings[1].Value;
-    document.getElementById("rottenTomatoesRating").value = imdb.Ratings[1].Value;
+
+    try {
+        document.getElementById("rottenTomatoesScore").innerHTML = imdb.Ratings[1].Value;
+        document.getElementById("rottenTomatoesRating").value = imdb.Ratings[1].Value;
+    }catch {
+        // No action needed
+    }
 }
 
 function imdbUpdate() {
@@ -37,7 +42,6 @@ function imdbUpdate() {
             id: imdbID
         }
     }).done(function(response) {
-        console.log(response);
         LoadDataToForm(response);
     }).fail(function(response) {
         console.log(response.responseJSON.error);
