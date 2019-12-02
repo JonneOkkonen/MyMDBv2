@@ -24,7 +24,7 @@ Elokuvien tiedot imdb-kannata haetaan hyödyntämällä [OMDb API:ta](http://www
 **viewSelector** = Pitää tallessa evästeissä kumpi näkymä ennen oli valittuna (list/grid) ja elokuvalistausta ladatessa valitsee oikean näkymän.  
 **app.js** = Bootstrapin tarvitsema JavaScript tiedosto.   
 **cookie.js** = Mahdollistaa evästeiden tallennuksen ja lukemisen selaimesta.  
-**jquery-3.4.1.min.js** = jQuery kirjasto
+**jquery-3.4.1.min.js** = jQuery kirjasto  
 **pagination.js** = Hoitaa sivujen valitsimen luomisen, vaihtamisen ja hallinnan.  
 **settings.js** = Hoitaa asetusvalikon elokuvan tyyppi valitsimen logiikan. Lisää ja poistaa kohteita sekä muuntaa valinnat CSV-muotoon, jossa ne tallennetaan tietokantaan.
 
