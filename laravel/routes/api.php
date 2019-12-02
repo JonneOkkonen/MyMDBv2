@@ -21,5 +21,3 @@ Route::get('movies/count', 'ApiController@count');
 Route::get('movies/add', 'ApiController@add');
 Route::get('movies/search', 'ApiController@search');
 Route::get('omdb/search', 'ApiController@OMDbSearch');
-
-Route::get('test', 'ApiController@test');
