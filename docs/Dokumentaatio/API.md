@@ -184,3 +184,61 @@ Return data for single movie.
         "error": "Movie not found"
     }]
     ```
+    
+## Delete Movie
+
+Delete data for single movie.
+
+### URL
+
+  `https://mymdb.jonneokkonen.com/api/movies/delete/{id}`
+
+### Method
+
+  `GET`
+
+### URL Params
+
+#### Required
+ 
+`session_token=` OR `api_token`  
+
+## Success Response
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+        "msg": "Movie Deleted Successfully"
+    }
+    ```
+ 
+## Error Response
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "API-token incorrect"
+    }]
+    ```
+
+       OR
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Session token invalid"
+    }]
+    ```
+
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Movie not found"
+    }]
+    ```
