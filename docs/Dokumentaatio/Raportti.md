@@ -150,6 +150,22 @@ laravel
 |.env
 |
 
-
-
 ```
+
+## Kehityskohteita
+
+Ajan puutteen takia osa toiminnoista jäi vielä toteuttamatta. Jatkossa voisi lisätä vielä ainakin seuraavat toiminnot:
+*  Kieli käännökset
+*  TV-sarjat
+*  Profiili sivun
+*  Paremmat virheilmoitukset
+*  Sisältöä etusivuille ja kotisivulle
+*  Responsiivisuuden viimeistely
+
+## Harjoitustyöhön käytetty aika
+
+Työtä oli varattu 40 tuntia tämä ylittyi ja projektiin kului yli 50 tuntia. Työ oli mielenkiintoinen ja tulen jatkossa kehittämään sitä eteenpäin ja ehkä julkaisemaan sen jopa kaikkien käytettäväksi.
+
+## Itsearvio
+
+Arvioisin työn arvosanaksi 5, koska se täyttää hyvin kurssin vaatimukset ja sain luotua oikein hyvin toimivan ja oikeaa käyttötapausta mallintavan järjestelmän.
