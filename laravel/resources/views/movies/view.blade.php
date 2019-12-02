@@ -14,6 +14,9 @@
 @section('heading')
     <h1>Movies</h1>
     <span class="subheading" id="subHeading">You have x movies on your collection.</span>
+    <br>
+    <div class="alert alert-success" id="success" style="display: none"></div>
+    <div class="alert alert-danger" id="error" style="display: none"></div>
 @endsection
 
 @section('heading-content')

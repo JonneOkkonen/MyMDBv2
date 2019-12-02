@@ -1,5 +1,7 @@
 // Load Page Data
 function OnLoad() {
+    document.getElementById("error").style = "display: none";
+    document.getElementById("success").style = "display: none";
     LoadMovieCount();
     LoadMovies(GetCookie("page"));
 }
@@ -259,7 +261,7 @@ function LoadDetailsView(data) {
 }
 
 // Delete Movie
-function DeleteMovie(id) {
+function DeleteMovie(id, load = true) {
     if (confirm('Are you sure you want to delete this movie?')) {
         let url = window.location.origin + "/~jonne/MyMDB/laravel/public/api/movies/delete/" + id;
         let sessionToken = GetCookie('mymdb_session');
@@ -271,10 +273,14 @@ function DeleteMovie(id) {
                 session_token: sessionToken
             }
         }).done(function(response) {
-            console.log(response);
-            OnLoad();
+            if(load) OnLoad();
+            document.getElementById("success").innerHTML = "Movie deleted successfully";
+            document.getElementById("success").style = "display: block";
+
         }).fail(function(response) {
-            console.log(response);
+            console.log(response.responseJSON.error);
+            document.getElementById("error").innerHTML = "Movie delete failed";
+            document.getElementById("error").style = "display: block";
         });
     }
 }
@@ -301,6 +307,8 @@ function Search(value) {
             }
         }).fail(function(response) {
             console.log(response.responseJSON.error);
+            document.getElementById("error").innerHTML = "Seaching failed: " + response.responseJSON.error;
+            document.getElementById("error").style = "display: block";
         });
     } 
 }

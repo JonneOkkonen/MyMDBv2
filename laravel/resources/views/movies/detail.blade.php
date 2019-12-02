@@ -16,6 +16,8 @@
         width: 80%;
     }
 </style>
+<div class="alert alert-success" id="success" style="display: none"></div>
+<div class="alert alert-danger" id="error" style="display: none"></div>
 <div class="container" id="movieDetails">
     <div class="row">
         <div class="col-lg-3 text-center text-light">
@@ -34,7 +36,7 @@
                     </button>
                 </div>
                 <div class="col-6 text-left">
-                    <button class='btn btn-danger iconButton' id="deleteButton" onclick='DeleteMovie(this.value)'>
+                    <button class='btn btn-danger iconButton' id="deleteButton" onclick='DeleteMovie(this.value, false)'>
                         <img src='../img/trash.svg' style='width: 25px; height: 25px;'>
                     </button>
                 </div>
