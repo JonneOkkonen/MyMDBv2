@@ -2,7 +2,7 @@
 
 Web-ohjelmointi ja Web-palvelinohjelmointi kurssien harjoitustyö 2019.
 
-URL: mymdb.jonneokkonen.com
+URL: [mymdb.jonneokkonen.com]()
 
 ## Työryhmä
 - Jonne Okkonen, M2235, TTV18S3
