@@ -2,7 +2,9 @@
 
 ![](../images/database.PNG)
 
-Tietokantaan tallennetaan käyttäjien tiedot heidän tallentamien elokuvien tiedot sekä kirjautumisistunnot. Tietokanta on toteutettu MySQL ja sen luomiseen on käytetty laravelin migration scriptejä.
+Tietokantaan tallennetaan käyttäjien tiedot heidän tallentamien elokuvien tiedot sekä kirjautumisistunnot. Tietokanta on toteutettu MySQL ja 
+sen luomiseen on käytetty laravelin migration scriptejä. Ajamalla komento `php artisan migrate` saadaan luotua koko sivun tarvitsema tietokanta, jota voidaan
+suoraan käyttää.
 
 ## Users -taulu
 
