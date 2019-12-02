@@ -13,6 +13,9 @@
 
 @section('heading')
     <h1 id="heading">Add/Edit Movie</h1>
+    <br>
+    <div class="alert alert-success" id="success" style="display: none"></div>
+    <div class="alert alert-danger" id="error" style="display: none"></div>
 @endsection
 
 @section('content')

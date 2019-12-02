@@ -40,9 +40,13 @@ function SaveMovie() {
         }
     }).done(function(response) {
         console.log(response);
+        document.getElementById("success").innerHTML = "Movie saved successfully";
+        document.getElementById("success").style = "display: block";
         ClearForm();
     }).fail(function(response) {
         console.log(response);
+        document.getElementById("error").innerHTML = "Movie not found";
+        document.getElementById("error").style = "display: block";
     });
 }
 
@@ -63,7 +67,8 @@ function LoadSingleMovie() {
     }).fail(function(response) {
         console.log(response.responseJSON.error);
         if(response.responseJSON.error == "Movie not found") {
-            document.getElementById("heading").innerHTML = "Movie not found";
+            document.getElementById("error").innerHTML = "Movie not found";
+            document.getElementById("error").style = "display: block";
         }
     });
 }
@@ -101,7 +106,14 @@ function ClearForm() {
     document.getElementById("MovieForm").reset();
     // Reset other fields
     document.getElementById("plot").value = "";
-    document.getElementById("poster").src = "../img/no-poster-available.jpg";
+    switch(GetCookie("mode")) {
+        case "edit":
+            document.getElementById("poster").src = "../../img/no-poster-available.jpg";
+        break;
+        case "add":
+            document.getElementById("poster").src = "../img/no-poster-available.jpg";
+        break;
+    }
     document.getElementById("imdbScore").innerHTML = "";
     document.getElementById("rottenTomatoesScore").innerHTML = "";
     document.getElementById("imdbID").value = "";

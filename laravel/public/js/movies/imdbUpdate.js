@@ -43,7 +43,12 @@ function imdbUpdate() {
         }
     }).done(function(response) {
         LoadDataToForm(response);
+        document.getElementById("error").style = "display: none";
+        document.getElementById("success").innerHTML = "Movie data loaded successfully";
+        document.getElementById("success").style = "display: block";
     }).fail(function(response) {
         console.log(response.responseJSON.error);
+        document.getElementById("error").innerHTML = response.responseJSON.error;
+        document.getElementById("error").style = "display: block";
     });
 }
