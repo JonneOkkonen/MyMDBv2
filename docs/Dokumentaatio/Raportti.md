@@ -14,6 +14,7 @@ lisäämänsä elokuvat.
 
 Sivusto on toteutettu käyttämällä Laravel alustaa, sekä PHP-, jQuery- ja JavaScript kieliä hyödyntämällä. Sivuston pääsisältö noudetaan hyödyntämällä API:ta ja
 AJAX-kutsuja jQuerylla toteutettuna. Ainoastaan settings ja sessions sivujen tiedot luetaan ja tallennetaan PHP:llä Laravelin tietokanta yhteyksiä hyödyntämällä.
+Elokuvien tiedot imdb-kannata haetaan hyödyntämällä [OMDb API:ta](http://www.omdbapi.com/).
 
 ## Istunnot
 
@@ -27,6 +28,15 @@ Käyttäjä voi muokata tilin tietoja ja asetuksia asetukset sivulla, joka löyt
 
 [Linkki tietokannan dokumenttiin](Tietokanta.md)
 
+## OMDb API
+
+[OMDb API:ta](http://www.omdbapi.com/) hyödynnetään elokuvatietojen noutamisessa imdbID:n avulla ja koska tämä vaatii oman API-avaimen. Loin oman API kutsun, joka tekee
+kutsun OMDb API rajapintaan palvelimen puolelta, jottei API-avainta tarvitsisi tallentaa käyttäjän puolelle.
+
 ## API
 
 [Linkki API:n dokumenttiin](API.md)
+
+## Sivustorakenne
+
+![](../images/sivustorakenne.PNG)
