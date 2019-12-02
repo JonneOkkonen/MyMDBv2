@@ -414,3 +414,63 @@ Delete data for single movie.
         "error": "Movie not found"
     }]
     ```
+    
+## Count Movies
+
+Return movie type count
+
+### URL
+
+  `https://mymdb.jonneokkonen.com/api/count`
+
+### Method
+
+  `GET`
+
+### URL Params
+
+#### Required
+ 
+`session_token=` OR `api_token`  
+
+### Success Response
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    [
+        {
+            "type": "Blu-Ray",
+            "count": 1
+        },
+        {
+            "type": "NoValue",
+            "count": 1
+        },
+        {
+            "type": "All",
+            "count": 2
+        }
+    ]
+    ```
+ 
+### Error Response
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "API-token incorrect"
+    }]
+    ```
+
+       OR
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Session token invalid"
+    }]
+    ```
+    
