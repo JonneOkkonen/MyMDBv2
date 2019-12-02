@@ -474,3 +474,99 @@ Return movie type count
     }]
     ```
     
+## Search Movie
+
+Search movie from database. Uses pagination. By default there are 10 movies per page.
+
+### URL
+
+  `https://mymdb.jonneokkonen.com/api/movies/search`
+
+### Method
+
+  `GET`
+
+### URL Params
+
+#### Required
+ 
+`session_token=` OR `api_token`  
+`searchTerm=`  
+`page=`  
+
+### Success Response
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+        {
+        "current_page": 1,
+        "data": [
+            {
+                "movieID": 11,
+                "userID": 2,
+                "name": "Napapiirin sankarit 2",
+                "type": "NoValue",
+                "imdbID": null,
+                "language": null,
+                "country": null,
+                "runtime": null,
+                "year": null,
+                "genre": null,
+                "rated": null,
+                "released": null,
+                "actors": null,
+                "director": null,
+                "writer": null,
+                "rating": null,
+                "awards": null,
+                "production": null,
+                "rottenTomatoes": null,
+                "plot": null,
+                "posterURL": null,
+                "created_at": "2019-12-02 18:41:53",
+                "updated_at": "2019-12-02 18:47:48"
+            }
+        ],
+        "first_page_url": "https://mymdb.jonneokkonen.com/api/movies/search?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "https://mymdb.jonneokkonen.com/api/movies/search?page=1",
+        "next_page_url": null,
+        "path": "https://mymdb.jonneokkonen.com/api/movies/search",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    }
+    ```
+ 
+### Error Response
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "API-token incorrect"
+    }]
+    ```
+
+       OR
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Session token invalid"
+    }]
+    ```
+
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Search term missing"
+    }]
+    ```
