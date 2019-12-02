@@ -175,7 +175,7 @@ Return data for single movie.
     }]
     ```
 
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -255,7 +255,7 @@ Add movie to database
     }]
     ```
 
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -335,7 +335,7 @@ Update movie data to database
     }]
     ```
 
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -346,7 +346,7 @@ Update movie data to database
     
     ```
     
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -405,7 +405,7 @@ Delete data for single movie.
     }]
     ```
 
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -561,7 +561,7 @@ Search movie from database. Uses pagination. By default there are 10 movies per 
     }]
     ```
 
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -649,7 +649,7 @@ This app uses OMDb API to retrieve movie data from imdb. This API is only usable
     }]
     ```
 
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
@@ -659,8 +659,7 @@ This app uses OMDb API to retrieve movie data from imdb. This API is only usable
     }]
     ```
     
-    
-        OR
+       OR
         
   * **Code:** 400 <br />
     **Content:** 
