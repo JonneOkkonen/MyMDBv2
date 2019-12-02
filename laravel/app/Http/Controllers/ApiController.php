@@ -50,7 +50,7 @@ class ApiController extends Controller
         if($movies == "[]") {
             return response()->json([
                 'msg' => '0 movies found'
-            ], 400);
+            ], 200);
         }else {
             return response()->json($movies, 200);
         }
