@@ -587,7 +587,7 @@ This app uses OMDb API to retrieve movie data from imdb. This API is only usable
 
 #### Required
  
-`session_token=`
+`session_token=`  
 `id=`  
 
 ### Success Response
