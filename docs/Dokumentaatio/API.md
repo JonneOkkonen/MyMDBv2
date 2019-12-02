@@ -8,30 +8,79 @@
   There are two authentication methods session_token and api_token.
   API_token can be found on users settings while logged in.
   Session_token is saved to a cookie named 'mymdb_session' while user is logged in.
-  To be able to use api you have to provide `session_token` or `api_token` get parameter when sending request to API.
+  To be able to use api you have to provide `session_token` or `api_token` in get parameter when sending request to API.
   
-## Movies
+## List of Movies
 
-## URL
+Return list of all movies in alphabetical order (A->Ö). Uses pagination. By default there are 100 movies per page.
 
-  `https://mymdb.jonneokkonen.com/api/`
+### URL
 
-## Method
+  `https://mymdb.jonneokkonen.com/api/movies`
+
+### Method
 
   `GET`
 
-## URL Params
+### URL Params
 
-### Required
+#### Required
  
-`apiKey=`  
+`session_token=` OR `api_token`
+`page=`
 
 ## Success Response
 
   * **Code:** 200 <br />
     **Content:** 
     ```json
-
+{
+    "current_page":1,
+    "data": [
+        {
+           "movieID":5,
+           "userID":1,
+           "name":"Pako Alcatrazista",
+           "type":"Blu-Ray",
+           "imdbID":"tt0079116",
+           "language":"English",
+           "country":"USA",
+           "runtime":"112 min",
+           "year":"1979",
+           "genre":"Biography, Crime, Drama, Thriller",
+           "rated":"PG",
+           "released":"22 Jun 1979",
+           "actors":"Clint Eastwood, Patrick McGoohan, Roberts Blossom, Jack Thibeau",
+           "director":"Don Siegel",
+           "writer":"J. Campbell Bruce (book), Richard Tuggle (screenplay)",
+           "rating":"7.6 (106,930)",
+           "awards":"N\/A",
+           "production":"Paramount Home Video",
+           "rottenTomatoes":"96%",
+           "plot":"The true story of three inmates who attempt a daring escape from 
+                   the infamous prison, Alcatraz Island. Although no-one had managed to escape before, 
+                   bank robber Frank Morris masterminded this elaborately detailed and, as far as anyone 
+                   knows, ultimately successful, escape. In 29 years, this seemingly impenetrable federal 
+                   penitentiary, which housed Al Capone and \"Birdman\" Robert Stroud, was only broken once 
+                   by three inmates never heard of again.",
+           "posterURL":"https:\/\/m.media-amazon.com\/images\/M\/MV5BNDQ3MzNjMDItZjE0ZS00ZTYxLTgxNT
+                        AtM2I4YjZjNWFjYjJlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+           "created_at":"2019-12-02 15:31:26",
+           "updated_at":"2019-12-02 15:31:26"
+            
+        }
+        ...
+    ],
+    "first_page_url":"https:\/\/mymdb.jonneokkonen.com\/api\/movies?page=1",
+    "from":1,
+    "last_page":1,
+    "last_page_url":"https:\/\/mymdb.jonneokkonen.com\/api\/movies?page=1",
+    "next_page_url":null,
+    "path":"https:\/\/mymdb.jonneokkonen.com\/api\/movies",
+    "per_page":100,
+    "prev_page_url":null,
+    "to":5,
+    "total":5}
     ```
  
 ## Error Response
@@ -40,38 +89,16 @@
     **Content:** 
     ```json
     [{
-        "error": "Incorrect API - key"
+        "error": "API-token incorrect"
     }]
     ```
 
        OR
 
-  * **Code:** 200 <br />
+  * **Code:** 400 <br />
     **Content:** 
     ```json
     [{
-        "error": "Query was empty"
-    }]
-    ```
-    
-       OR
-
-  * **Code:** 200 <br />
-    **Content:** 
-    ```json
-    [{
-        "error": "0 results from query"
-    }]
-    ```
-       OR
-  
-  * **Code:** 200 <br />
-    **Content:**   
-    ```json
-    [{
-        "error" : "You have an error in your SQL syntax; check the manual 
-        that corresponds to your MySQL server version for the right syntax to 
-        use near 'Ajoneuvo LIMIT 1' at line 1"
-        
+        "error": "Session token invalid"
     }]
     ```
