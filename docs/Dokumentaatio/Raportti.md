@@ -40,3 +40,75 @@ kutsun OMDb API rajapintaan palvelimen puolelta, jottei API-avainta tarvitsisi t
 ## Sivustorakenne
 
 ![](../images/sivustorakenne.PNG)
+
+## Kansiorakenne
+
+Peruskansio rakenne. Laravellin kansio rakenteen monimutkaisuuden takia olen jättänyt pois suurenmäärän kansioita. Kuvassa vain mainitsemisen arvoiset kansiot.
+
+```
+laravel
+|
+|
+|
+|
+|
+|
+|
+|
+|---public
+    ----css
+        auth.css
+        bootstrap.min.css
+        movies.css
+        sessions.css
+        settings.css
+        styles.css
+    ----js
+        ----movies
+            imdbUpdate.js
+            movies.js
+            saveMovie.js
+            viewSelector.js
+        app.js
+        cookie.js
+        jquery-3.4.1.min.js
+        pagination.js
+        settings.js
+    ----img
+        grid-three.up.svg
+        home-bg.jpg
+        imdb_logo.jpg
+        list.svg
+        no-poster-available.jpg
+        pencil.svg
+        rotten_tomatoes_logo.png
+        trash.svg
+|
+|---resources
+    ---views
+        ----auth
+            ----passwords
+                change.blade.php
+            login.blade.php
+            register.blade.php
+            session.blade.php
+        ----layouts
+            app.blade.php
+        ----movies
+            detail.blade.php
+            movie.blade.php
+            view.blade.php
+        home.blade.php
+        settings.blade.php
+        welcome.blade.php
+|
+|---routes
+    api.php
+    web.php
+|
+|.env
+|
+
+
+
+```
