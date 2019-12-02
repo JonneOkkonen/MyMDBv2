@@ -185,6 +185,86 @@ Return data for single movie.
     }]
     ```
     
+## Add Movie
+
+Add movie to database
+
+### URL
+
+  `https://mymdb.jonneokkonen.com/api/movies/add`
+
+### Method
+
+  `GET`
+
+### URL Params
+
+#### Required
+ 
+`session_token=` OR `api_token`  
+`name=`
+
+### Optional
+
+`type=`  
+`imdbID=`  
+`language=`  
+`country=`  
+`runtime=`  
+`year=`  
+`genre=`  
+`rated=`  
+`released=`  
+`actors=` 
+`director=`  
+`writer=`  
+`rating=`  
+`awards=`  
+`production=`  
+`rottenTomatoes=`  
+`plot=`  
+`posterURL=`  
+
+### Success Response
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+        "msg": "Movie Added Successfully"
+    }
+    ```
+ 
+### Error Response
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "API-token incorrect"
+    }]
+    ```
+
+       OR
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Session token invalid"
+    }]
+    ```
+
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Name cannot be null"
+    }]
+    ```
+    
 ## Delete Movie
 
 Delete data for single movie.
