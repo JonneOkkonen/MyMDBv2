@@ -16,6 +16,32 @@ Sivusto on toteutettu käyttämällä Laravel alustaa, sekä PHP-, jQuery- ja Ja
 AJAX-kutsuja jQuerylla toteutettuna. Ainoastaan settings ja sessions sivujen tiedot luetaan ja tallennetaan PHP:llä Laravelin tietokanta yhteyksiä hyödyntämällä.
 Elokuvien tiedot imdb-kannata haetaan hyödyntämällä [OMDb API:ta](http://www.omdbapi.com/).
 
+## JavaScript, jQuery, PHP
+
+**imdpUpdate** = Lataa elokuvan tiedot API:sta käyttäen imdbID:tä sekä asettelee tiedot oikeisiin kenttiin add/edit movie sivulla.   
+**movies** = Sisältää suurimman osan sivuston toiminnallisuudesta. Elokuvalistan latautuessa hakee elokuva tyyppi tiedot ja määrän ja päivittää ne näkymään, sekä lataa elokuvien tiedot listaan ja ruudukkoon. Näiden lisäksi se myös vaihtaa sivua (pagination), hakee elokuvia hakusanalla ja näyttää niiden tiedot, sekä poistaa elokuvan.  
+**saveMovie** = Hoitaa elokuvan tallentamisen/päivittämisen tietokantaan ja lataa elokuvan tiedot muokkaus näkymää.  
+**viewSelector** = Pitää tallessa evästeissä kumpi näkymä ennen oli valittuna (list/grid) ja elokuvalistausta ladatessa valitsee oikean näkymän.  
+**app.js** = Bootstrapin tarvitsema JavaScript tiedosto.   
+**cookie.js** = Mahdollistaa evästeiden tallennuksen ja lukemisen selaimesta.  
+**jquery-3.4.1.min.js** = jQuery kirjasto
+**pagination.js** = Hoitaa sivujen valitsimen luomisen, vaihtamisen ja hallinnan.  
+**settings.js** = Hoitaa asetusvalikon elokuvan tyyppi valitsimen logiikan. Lisää ja poistaa kohteita sekä muuntaa valinnat CSV-muotoon, jossa ne tallennetaan tietokantaan.
+
+```
+----js
+    ----movies
+        imdbUpdate.js
+        movies.js
+        saveMovie.js
+        viewSelector.js
+    app.js
+    cookie.js
+    jquery-3.4.1.min.js
+    pagination.js
+    settings.js
+```
+
 ## Istunnot
 
 Käyttäjän kirjauduttua istunto tallennetaan tietokantaan ja voimassa olevia istuntoja on mahdollista hallita Session sivulta, joka löytyy käyttäjänimen alta valikosta.
