@@ -29,7 +29,7 @@ Return list of all movies in alphabetical order (A->Ö). Uses pagination. By def
 `session_token=` OR `api_token`  
 `page=`
 
-## Success Response
+### Success Response
 
   * **Code:** 200 <br />
     **Content:** 
@@ -83,7 +83,7 @@ Return list of all movies in alphabetical order (A->Ö). Uses pagination. By def
         "total":5}
     ```
  
-## Error Response
+### Error Response
 
   * **Code:** 400 <br />
     **Content:** 
@@ -121,7 +121,7 @@ Return data for single movie.
  
 `session_token=` OR `api_token`  
 
-## Success Response
+### Success Response
 
   * **Code:** 200 <br />
     **Content:** 
@@ -155,7 +155,7 @@ Return data for single movie.
     ]
     ```
  
-## Error Response
+### Error Response
 
   * **Code:** 400 <br />
     **Content:** 
@@ -203,7 +203,7 @@ Delete data for single movie.
  
 `session_token=` OR `api_token`  
 
-## Success Response
+### Success Response
 
   * **Code:** 200 <br />
     **Content:** 
@@ -213,7 +213,7 @@ Delete data for single movie.
     }
     ```
  
-## Error Response
+### Error Response
 
   * **Code:** 400 <br />
     **Content:** 
