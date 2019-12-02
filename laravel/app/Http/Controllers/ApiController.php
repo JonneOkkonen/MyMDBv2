@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Auth;
 use Crypt;
 
@@ -26,8 +27,14 @@ class ApiController extends Controller
     public function all()
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -53,8 +60,14 @@ class ApiController extends Controller
     public function single($id)
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -80,8 +93,14 @@ class ApiController extends Controller
     public function delete($id)
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -111,8 +130,14 @@ class ApiController extends Controller
     public function add()
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -161,8 +186,14 @@ class ApiController extends Controller
     public function update($id)
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -217,8 +248,14 @@ class ApiController extends Controller
     public function count()
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -242,8 +279,14 @@ class ApiController extends Controller
     public function search()
     {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 $userID = DB::table('sessions')->where('id', $decryptedID)->value('user_id');
             }
@@ -278,8 +321,14 @@ class ApiController extends Controller
     // OMDb API search
     public function OMDbSearch() {
         if(self::$sessionAuth) {
-            // Decrypt Session ID
-            $decryptedID = Crypt::decrypt(request('session_token'), false);
+            // Try to Decrypt Session ID
+            try {
+                $decryptedID = Crypt::decrypt(request('session_token'), false);
+            }catch(DecryptException $e) {
+                return response()->json([
+                    'error' => 'Session token invalid'
+                ], 400);
+            }
             if(DB::table('sessions')->where('id', $decryptedID)->exists()) {
                 if(request('id') != null) {
                     // Search
