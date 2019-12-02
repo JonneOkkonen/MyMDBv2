@@ -570,3 +570,102 @@ Search movie from database. Uses pagination. By default there are 10 movies per 
         "error": "Search term missing"
     }]
     ```
+    
+## OMDb Search
+
+This app uses OMDb API to retrieve movie data from imdb. This API is only usable with session_token.
+
+### URL
+
+  `https://mymdb.jonneokkonen.com/api/omdb/search`
+
+### Method
+
+  `GET`
+
+### URL Params
+
+#### Required
+ 
+`session_token=`
+`id=`  
+
+### Success Response
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+        "Title": "Lapland Odyssey",
+        "Year": "2010",
+        "Rated": "Not Rated",
+        "Released": "15 Oct 2010",
+        "Runtime": "92 min",
+        "Genre": "Comedy, Drama, Romance",
+        "Director": "Dome Karukoski",
+        "Writer": "Pekko Pesonen",
+        "Actors": "Pamela Tola, Jussi Vatanen, Jasper Pääkkönen, Timo Lavikainen",
+        "Plot": "A comedy about Janne, a man from Lapland in Northern Finland, a man who has made a career out of living on welfare. Inari, his girlfriend, is tired of Janne's incapability of getting a grip on life. Janne wasn't even able to buy a digital TV box that Inari had given money for. Inari gives an ultimatum: a digital box needs to arrive by dawn or she leaves. Janne sets out into the night with his two friends to find a box. On their way to the city of Rovaniemi, Janne and his friends face many challenges, obstacles and temptations. They learn that they need to be daring. There's no room to give into bitterness. The most important thing isn't success, but rather the journey in itself.",
+        "Language": "Finnish, English, Swedish, Russian",
+        "Country": "Finland, Ireland, Sweden",
+        "Awards": "7 wins & 5 nominations.",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ1NDQ4MjM2MF5BMl5BanBnXkFtZTcwNTM3Mjg5OA@@._V1_SX300.jpg",
+        "Ratings": [
+            {
+                "Source": "Internet Movie Database",
+                "Value": "6.9/10"
+            }
+        ],
+        "Metascore": "N/A",
+        "imdbRating": "6.9",
+        "imdbVotes": "5,480",
+        "imdbID": "tt1454505",
+        "Type": "movie",
+        "DVD": "08 Jan 2013",
+        "BoxOffice": "N/A",
+        "Production": "Helsinki Filmi Oy",
+        "Website": "N/A",
+        "Response": "True"
+    }
+    ```
+ 
+### Error Response
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "OMDbSearch is not available with api token"
+    }]
+    ```
+
+       OR
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Session token invalid"
+    }]
+    ```
+
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "imdbID missing"
+    }]
+    ```
+    
+    
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Incorrect IMDb ID."
+    }]
+    ```
