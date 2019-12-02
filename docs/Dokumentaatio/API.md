@@ -265,6 +265,98 @@ Add movie to database
     }]
     ```
     
+## Update Movie
+
+Update movie data to database
+
+### URL
+
+  `https://mymdb.jonneokkonen.com/api/movies/update/{id}`
+
+### Method
+
+  `GET`
+
+### URL Params
+
+#### Required
+ 
+`session_token=` OR `api_token`  
+`name=`
+
+### Optional
+
+`type=`  
+`imdbID=`  
+`language=`  
+`country=`  
+`runtime=`  
+`year=`  
+`genre=`  
+`rated=`  
+`released=`  
+`actors=` 
+`director=`  
+`writer=`  
+`rating=`  
+`awards=`  
+`production=`  
+`rottenTomatoes=`  
+`plot=`  
+`posterURL=`  
+
+### Success Response
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+        "msg": "Movie Updated Successfully"
+    }
+    ```
+ 
+### Error Response
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "API-token incorrect"
+    }]
+    ```
+
+       OR
+
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Session token invalid"
+    }]
+    ```
+
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Name cannot be null"
+    }]
+    
+    ```
+    
+        OR
+        
+  * **Code:** 400 <br />
+    **Content:** 
+    ```json
+    [{
+        "error": "Movie not found"
+    }]
+    
+    ```
+    
 ## Delete Movie
 
 Delete data for single movie.
