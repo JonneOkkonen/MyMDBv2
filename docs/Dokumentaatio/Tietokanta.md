@@ -1,0 +1,3 @@
+# Tietokanta
+
+![](../images/database.png)
