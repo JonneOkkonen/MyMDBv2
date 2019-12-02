@@ -43,17 +43,32 @@ kutsun OMDb API rajapintaan palvelimen puolelta, jottei API-avainta tarvitsisi t
 
 ## Kansiorakenne
 
-Peruskansio rakenne. Laravellin kansio rakenteen monimutkaisuuden takia olen jättänyt pois suurenmäärän kansioita. Kuvassa vain mainitsemisen arvoiset kansiot.
+Peruskansio rakenne. Laravellin kansio rakenteen monimutkaisuuden takia olen jättänyt pois suurenmäärän kansioita. Kuvassa vain mainitsemisen arvoiset kansiot, pääasiassa ne joihin olen tehnyt muutoksia..
 
 ```
 laravel
 |
+|---app
+    ----Exceptions
+        Handler.php
+    ----Http
+        ----Controllers
+            ---Auth
+            ChangePasswordController.php
+            RegisterController.php
+        ApiController.php
+        HomeController.php
+        MovieController.php
+|   Movie.php
+|   Setting.php
+|   User.php
 |
-|
-|
-|
-|
-|
+|---database 
+    ----migrations
+        ...create_users_table.php
+        ...create_movies_table.php
+        ...create_sessions_table.php
+        ...create_settings_table.php
 |
 |---public
     ----css
