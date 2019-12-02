@@ -96,7 +96,7 @@ function LoadMovieCount() {
             // MovieTypeBar elem
             let movieTypeBar = document.getElementById("movieTypeBar");
             // Show MovieTypeBar
-            movieTypeBar.style = "display: block";
+            movieTypeBar.style = "";
             // Make sure that view is empty
             movieTypeBar.innerHTML = "";
             // Create Bar Sections
