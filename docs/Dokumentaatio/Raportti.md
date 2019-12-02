@@ -154,13 +154,13 @@ laravel
 
 ## Kehityskohteita
 
-Ajan puutteen takia osa toiminnoista jäi vielä toteuttamatta. Jatkossa voisi lisätä vielä ainakin seuraavat toiminnot:
-*  Kieli käännökset
-*  TV-sarjat
-*  Profiili sivun
-*  Paremmat virheilmoitukset
-*  Sisältöä etusivuille ja kotisivulle
-*  Responsiivisuuden viimeistely
+Ajan puutteen takia osa toiminnoista jäi vielä toteuttamatta. Jatkossa voisi lisätä vielä ainakin seuraavat toiminnot:  
+*  Kieli käännökset  
+*  TV-sarjat  
+*  Profiili sivun  
+*  Paremmat virheilmoitukset  
+*  Sisältöä etusivuille ja kotisivulle  
+*  Responsiivisuuden viimeistely  
 
 ## Harjoitustyöhön käytetty aika
 
