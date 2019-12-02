@@ -105,7 +105,7 @@ function LoadFormData(data) {
 function ClearForm() {
     document.getElementById("MovieForm").reset();
     // Reset other fields
-    document.getElementById("plot").value = "";
+    document.getElementById("plot").innerHTML = "";
     switch(GetCookie("mode")) {
         case "edit":
             document.getElementById("poster").src = "../../img/no-poster-available.jpg";
