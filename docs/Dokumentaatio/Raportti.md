@@ -162,6 +162,10 @@ Ajan puutteen takia osa toiminnoista jäi vielä toteuttamatta. Jatkossa voisi l
 *  Sisältöä etusivuille ja kotisivulle  
 *  Responsiivisuuden viimeistely  
 
+## Palvelin
+
+Sivusto pyörii DigitalOceanin Ubuntu palvelimella. Sivusto toimii mymdb-aliverkkotunnuksella ja lisäsin sille myös Let's Encryptin SSL-sertifikaatin.
+
 ## Harjoitustyöhön käytetty aika
 
 Työtä oli varattu 40 tuntia tämä ylittyi ja projektiin kului yli 50 tuntia. Työ oli mielenkiintoinen ja tulen jatkossa kehittämään sitä eteenpäin ja ehkä julkaisemaan sen jopa kaikkien käytettäväksi.
